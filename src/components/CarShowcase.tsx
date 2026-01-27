@@ -450,7 +450,7 @@ import carLambo from '@/assets/car-lambo.jpg';
 gsap.registerPlugin(ScrollTrigger);
 
 const cars = [
-  { id: 1, name: 'Porsche 911 Turbo S', image: carPorsche, bgColor: '#F2B590' },
+  { id: 1, name: 'Porsche 911 Turbo S', image: carPorsche, bgColor: '#000000' },
   { id: 2, name: 'Mercedes-Benz S-Class', image: carMercedes, bgColor: '#EAD5D3' },
   { id: 3, name: 'BMW M8 Competition', image: carBmw, bgColor: '#B2A8D5' },
   { id: 4, name: 'Audi R8 V10', image: carAudi, bgColor: '#92DFCF' },
@@ -659,7 +659,7 @@ const CarShowcase = () => {
 
         <div
           ref={scrollContainerRef}
-          className="flex items-center gap-16"
+          className="flex items-center gap-[150px]"
           style={{ width: 'max-content' }}
         >
           {/* LEFT SPACER */}
@@ -669,7 +669,7 @@ const CarShowcase = () => {
             <div
               key={car.id}
               data-bg={car.bgColor}
-              className="car-card w-[350px] h-[500px] shrink-0"
+              className="car-card w-[350px] h-[450px] shrink-0"
             >
               <div className="relative w-full h-full rounded-sm overflow-hidden shadow-2xl">
 
