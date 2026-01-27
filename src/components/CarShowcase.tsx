@@ -648,7 +648,7 @@ const CarShowcase = () => {
     <section
       ref={sectionRef}
       className="min-h-screen overflow-hidden"
-      style={{ backgroundColor: cars[0].bgColor }}
+      style={{ backgroundColor: "#F2B590" }}
     >
       <div ref={triggerRef} className="min-h-screen flex flex-col justify-center">
 
