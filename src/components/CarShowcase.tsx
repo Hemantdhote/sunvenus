@@ -463,58 +463,6 @@ const CarShowcase = () => {
   const triggerRef = useRef<HTMLDivElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   const section = sectionRef.current;
-  //   const container = scrollContainerRef.current;
-  //   if (!section || !container) return;
-
-  //   const scrollDistance = container.scrollWidth - window.innerWidth;
-
-  //   const ctx = gsap.context(() => {
-  //     const horizontalTween = gsap.to(container, {
-  //       x: -scrollDistance,
-  //       ease: 'none',
-  //       scrollTrigger: {
-  //         trigger: triggerRef.current,
-  //         start: 'top top',
-  //         end: `+=${scrollDistance}`,
-  //         scrub: 1,
-  //         pin: true,
-  //         anticipatePin: 1,
-  //       },
-  //     });
-
-  //     gsap.utils.toArray<HTMLElement>('.car-card').forEach((card) => {
-  //       const title = card.querySelector('.car-title');
-  //       const bg = card.dataset.bg;
-
-  //       ScrollTrigger.create({
-  //         trigger: card,
-  //         containerAnimation: horizontalTween,
-  //         start: 'left center',
-  //         end: 'right center',
-  //         onEnter: () => activate(title, bg),
-  //         onEnterBack: () => activate(title, bg),
-  //         onLeave: () => deactivate(title),
-  //         onLeaveBack: () => deactivate(title),
-  //       });
-  //     });
-  //   }, section);
-
-  //   return () => ctx.revert();
-  // }, []);
-
-
-
-
-
-
-
-
-
-
-
-
   useEffect(() => {
   const section = sectionRef.current;
   const container = scrollContainerRef.current;
@@ -653,7 +601,7 @@ const CarShowcase = () => {
       <div ref={triggerRef} className="min-h-screen flex flex-col justify-center">
 
         <div className="text-center text-white mb-12">
-          <h2 className="text-5xl font-bold">Premium Collection</h2>
+          <h2 className="text-5xl font-bold font-sans">Premium Collection</h2>
           <p className="opacity-60 mt-4">Scroll to explore</p>
         </div>
 

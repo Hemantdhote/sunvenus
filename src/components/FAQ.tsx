@@ -191,14 +191,6 @@ const faqs = [
     question: 'Do you offer chauffeur services?',
     answer: 'Yes, we provide professional chauffeur services with all vehicles. Our chauffeurs are trained to the highest standards and offer multilingual support.',
   },
-  {
-    question: 'What is the security deposit?',
-    answer: 'Security deposits vary by vehicle class, ranging from $2,000 to $10,000. The deposit is held on your credit card and released within 7 business days after return.',
-  },
-  {
-    question: 'Are there mileage limits?',
-    answer: 'Standard rentals include 200 km per day. Unlimited mileage packages are available for extended rentals. Additional kilometers are charged at a premium rate.',
-  },
 ];
 
 interface FAQItemProps {

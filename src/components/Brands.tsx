@@ -80,182 +80,110 @@
 
 
 
-import { useEffect, useRef } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import mercedes from "../assets/brands/mercedes-benz-1.svg"
-import bmw from "../assets/brands/bmw-logo.svg"
-import audi from "../assets/brands/audi-new-logo.svg"
-import porsche from "../assets/brands/porsche-6.svg"
-import lamborghini from "../assets/brands/lamborghini.svg"
-import ferrari from "../assets/brands/ferrari.svg"
-import bentley from "../assets/brands/bentley.svg"
-import rollsRoyce from "../assets/Brands/rolls-royce.svg"
 
-gsap.registerPlugin(ScrollTrigger);
 
-/* ------------------------------------------------------------------ */
-/* DATA */
-/* ------------------------------------------------------------------ */
+
+
+
+
+
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
 
 const brands = [
-  { name: 'Mercedes-Benz', logo: mercedes },
-  { name: 'BMW', logo: bmw},
-  { name: 'Audi', logo: audi },
-  { name: 'Porsche', logo: porsche },
-  { name: 'Lamborghini', logo: lamborghini},
-  { name: 'Ferrari', logo: ferrari },
-  { name: 'Bentley', logo: bentley},
-  { name: 'Rolls-Royce', logo: rollsRoyce },
+  "Mercedes-Benz",
+  "BMW",
+  "Audi",
+  "Porsche",
+  "Lamborghini",
+  "Ferrari",
+  "Bentley",
+  "Rolls-Royce",
 ];
 
-/* ------------------------------------------------------------------ */
-/* COMPONENT */
-/* ------------------------------------------------------------------ */
-
 const Brands = () => {
-  const sectionRef = useRef<HTMLDivElement>(null);
-  const triggerRef = useRef<HTMLDivElement>(null);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const marqueeRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const section = sectionRef.current;
-    const scrollContainer = scrollContainerRef.current;
-
-    if (!section || !scrollContainer) return;
-
-    const totalWidth = scrollContainer.scrollWidth;
-    const viewportWidth = window.innerWidth;
-    const scrollDistance = totalWidth - viewportWidth;
+    const marquee = marqueeRef.current;
+    if (!marquee) return;
 
     const ctx = gsap.context(() => {
-      gsap.fromTo(
-        scrollContainer,
-        { x: -scrollDistance },
-        {
-          x: 0,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: triggerRef.current,
-            start: 'top top',
-            end: () => `+=${scrollDistance}`,
-            scrub: 1,
-            pin: true,
-            anticipatePin: 1,
-            invalidateOnRefresh: true,
-          },
-        }
-      );
+      const width = marquee.scrollWidth / 2;
 
-      gsap.fromTo(
-        '.brands-title',
-        { y: 40, opacity: 0 },
-        {
-          y: 0,
-          opacity: 1,
-          duration: 1.1,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: '.brands-title',
-            start: 'top 85%',
-          },
-        }
-      );
-    }, section);
+      gsap.set(marquee, { x: -width });
+
+      gsap.to(marquee, {
+        x: 0,
+        duration: 25,
+        ease: "none",
+        repeat: -1,
+      });
+    });
 
     return () => ctx.revert();
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative bg-background overflow-hidden">
-      <div ref={triggerRef} className="relative min-h-screen">
+    <section className="relative overflow-hidden bg-background py-32">
+      {/* GRADIENT FADE EDGES */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute left-0 top-0 h-full w-40 bg-gradient-to-r from-background to-transparent" />
+        <div className="absolute right-0 top-0 h-full w-40 bg-gradient-to-l from-background to-transparent" />
+      </div>
 
-        {/* HEADER */}
-        <div className="container mx-auto px-6 pt-28 pb-16">
-          <div className="brands-title text-center">
-            <span className="inline-block px-5 py-2 rounded-full bg-gold/10 text-gold text-xs tracking-widest uppercase mb-6">
-              Trusted Partners
-            </span>
-            <h2 className="font-sans text-4xl md:text-5xl font-bold mb-4">
-              Premium Brands We Offer
-            </h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
-              We collaborate with the world’s most prestigious automotive manufacturers
-            </p>
-          </div>
-        </div>
+      {/* TITLE */}
+      <div className="text-center mb-20">
+        <span className="inline-block px-6 py-2 rounded-full bg-gold/10 text-gold text-xs tracking-[0.3em] uppercase mb-6">
+          Trusted Partners
+        </span>
+        <h2 className="text-4xl md:text-5xl font-bold font-sans">
+          Brands We Offer
+        </h2>
+      </div>
 
-        <div className="absolute inset-0 bg-gradient-to-r from-secondary/50 via-secondary/40 to-transparent" />
-  <div className="absolute inset-0 bg-gradient-to-t from-secondary/20 via-transparent to-secondary/50" />
-
-        {/* HORIZONTAL SCROLL */}
+      {/* MARQUEE WRAPPER */}
+      <div className="relative overflow-hidden">
         <div
-          ref={scrollContainerRef}
-          className="flex gap-12 px-8 lg:px-16 pb-28"
-          style={{ width: 'max-content' }}
+          ref={marqueeRef}
+          className="flex w-max gap-24 px-12"
         >
-          {brands.map((brand) => (
-            <div
-              key={brand.name}
-              className="flex-shrink-0 w-[280px] md:w-[320px]"
+          {[...brands, ...brands].map((brand, i) => (
+            <div className="flex items-center justify-center gap-2">
+                <svg
+  width="20"
+  height="20"
+  viewBox="0 0 12 12"
+  className="fill-gold opacity-80"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <rect
+    x="3"
+    y="3"
+    width="6"
+    height="6"
+    transform="rotate(45 6 6)"
+  />
+</svg>
+
+              <span
+              key={i}
+              className="
+                text-3xl md:text-4xl lg:text-5xl
+                font-light uppercase
+                tracking-[0.4em]
+                text-muted-foreground
+                hover:text-gold
+                transition-colors duration-500
+                whitespace-nowrap
+              "
             >
-              <div
-                className="
-                relative h-[220px] rounded-3xl
-                bg-card/80 backdrop-blur-xl
-                border border-white/5
-                shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]
-                flex flex-col items-center justify-center
-                transition-all duration-500
-                hover:-translate-y-2
-                hover:shadow-[0_40px_120px_-30px_rgba(212,175,55,0.35)]
-                group
-                "
-              >
-                {/* GOLD ACCENT */}
-                <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition">
-                  <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-transparent rounded-3xl" />
-                </div>
+              {brand}
+            </span>
 
-                {/* LOGO */}
-                <img
-                  src={brand.logo}
-                  alt={brand.name}
-                  className="
-                  h-14 mb-6
-                  opacity-85
-                  group-hover:opacity-100
-                  transition
-                  "
-                />
-
-                {/* NAME */}
-                <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground">
-                  {brand.name}
-                </p>
-              </div>
             </div>
+            
           ))}
-        </div>
-
-        {/* SCROLL HINT */}
-        <div className="absolute bottom-10 right-10 hidden lg:flex items-center gap-3 text-muted-foreground">
-          <span className="text-xs tracking-widest uppercase">
-            Scroll
-          </span>
-          <svg
-            className="w-6 h-6 animate-pulse"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M17 8l4 4m0 0l-4 4m4-4H3"
-            />
-          </svg>
         </div>
       </div>
     </section>
@@ -263,6 +191,207 @@ const Brands = () => {
 };
 
 export default Brands;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import { useEffect, useRef } from 'react';
+// import gsap from 'gsap';
+// import { ScrollTrigger } from 'gsap/ScrollTrigger';
+// import mercedes from "../assets/brands/mercedes-benz-1.svg"
+// import bmw from "../assets/brands/bmw-logo.svg"
+// import audi from "../assets/brands/audi-new-logo.svg"
+// import porsche from "../assets/brands/porsche-6.svg"
+// import lamborghini from "../assets/brands/lamborghini.svg"
+// import ferrari from "../assets/brands/ferrari.svg"
+// import bentley from "../assets/brands/bentley.svg"
+// import rollsRoyce from "../assets/Brands/rolls-royce.svg"
+
+// gsap.registerPlugin(ScrollTrigger);
+
+// /* ------------------------------------------------------------------ */
+// /* DATA */
+// /* ------------------------------------------------------------------ */
+
+// const brands = [
+//   { name: 'Mercedes-Benz', logo: mercedes },
+//   { name: 'BMW', logo: bmw},
+//   { name: 'Audi', logo: audi },
+//   { name: 'Porsche', logo: porsche },
+//   { name: 'Lamborghini', logo: lamborghini},
+//   { name: 'Ferrari', logo: ferrari },
+//   { name: 'Bentley', logo: bentley},
+//   { name: 'Rolls-Royce', logo: rollsRoyce },
+// ];
+
+// /* ------------------------------------------------------------------ */
+// /* COMPONENT */
+// /* ------------------------------------------------------------------ */
+
+// const Brands = () => {
+//   const sectionRef = useRef<HTMLDivElement>(null);
+//   const triggerRef = useRef<HTMLDivElement>(null);
+//   const scrollContainerRef = useRef<HTMLDivElement>(null);
+
+//   useEffect(() => {
+//     const section = sectionRef.current;
+//     const scrollContainer = scrollContainerRef.current;
+
+//     if (!section || !scrollContainer) return;
+
+//     const totalWidth = scrollContainer.scrollWidth;
+//     const viewportWidth = window.innerWidth;
+//     const scrollDistance = totalWidth - viewportWidth;
+
+//     const ctx = gsap.context(() => {
+//       gsap.fromTo(
+//         scrollContainer,
+//         { x: -scrollDistance },
+//         {
+//           x: 0,
+//           ease: 'none',
+//           scrollTrigger: {
+//             trigger: triggerRef.current,
+//             start: 'top top',
+//             end: () => `+=${scrollDistance}`,
+//             scrub: 1,
+//             pin: true,
+//             anticipatePin: 1,
+//             invalidateOnRefresh: true,
+//           },
+//         }
+//       );
+
+//       gsap.fromTo(
+//         '.brands-title',
+//         { y: 40, opacity: 0 },
+//         {
+//           y: 0,
+//           opacity: 1,
+//           duration: 1.1,
+//           ease: 'power3.out',
+//           scrollTrigger: {
+//             trigger: '.brands-title',
+//             start: 'top 85%',
+//           },
+//         }
+//       );
+//     }, section);
+
+//     return () => ctx.revert();
+//   }, []);
+
+//   return (
+//     <section ref={sectionRef} className="relative bg-background overflow-hidden">
+//       <div ref={triggerRef} className="relative min-h-screen">
+
+//         {/* HEADER */}
+//         <div className="container mx-auto px-6 pt-28 pb-16">
+//           <div className="brands-title text-center">
+//             <span className="inline-block px-5 py-2 rounded-full bg-gold/10 text-gold text-xs tracking-widest uppercase mb-6">
+//               Trusted Partners
+//             </span>
+//             <h2 className="font-sans text-4xl md:text-5xl font-bold mb-4">
+//               Premium Brands We Offer
+//             </h2>
+//             <p className="text-muted-foreground max-w-2xl mx-auto">
+//               We collaborate with the world’s most prestigious automotive manufacturers
+//             </p>
+//           </div>
+//         </div>
+
+//         <div className="absolute inset-0 bg-gradient-to-r from-secondary/50 via-secondary/40 to-transparent" />
+//   <div className="absolute inset-0 bg-gradient-to-t from-secondary/20 via-transparent to-secondary/50" />
+
+//         {/* HORIZONTAL SCROLL */}
+//         <div
+//           ref={scrollContainerRef}
+//           className="flex gap-12 px-8 lg:px-16 pb-28"
+//           style={{ width: 'max-content' }}
+//         >
+//           {brands.map((brand) => (
+//             <div
+//               key={brand.name}
+//               className="flex-shrink-0 w-[280px] md:w-[320px]"
+//             >
+//               <div
+//                 className="
+//                 relative h-[220px] rounded-3xl
+//                 bg-card/80 backdrop-blur-xl
+//                 border border-white/5
+//                 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)]
+//                 flex flex-col items-center justify-center
+//                 transition-all duration-500
+//                 hover:-translate-y-2
+//                 hover:shadow-[0_40px_120px_-30px_rgba(212,175,55,0.35)]
+//                 group
+//                 "
+//               >
+//                 {/* GOLD ACCENT */}
+//                 <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition">
+//                   <div className="absolute inset-0 bg-gradient-to-br from-gold/10 via-transparent to-transparent rounded-3xl" />
+//                 </div>
+
+//                 {/* LOGO */}
+//                 <img
+//                   src={brand.logo}
+//                   alt={brand.name}
+//                   className="
+//                   h-14 mb-6
+//                   opacity-85
+//                   group-hover:opacity-100
+//                   transition
+//                   "
+//                 />
+
+//                 {/* NAME */}
+//                 <p className="text-xs tracking-[0.3em] uppercase text-muted-foreground">
+//                   {brand.name}
+//                 </p>
+//               </div>
+//             </div>
+//           ))}
+//         </div>
+
+//         {/* SCROLL HINT */}
+//         <div className="absolute bottom-10 right-10 hidden lg:flex items-center gap-3 text-muted-foreground">
+//           <span className="text-xs tracking-widest uppercase">
+//             Scroll
+//           </span>
+//           <svg
+//             className="w-6 h-6 animate-pulse"
+//             fill="none"
+//             viewBox="0 0 24 24"
+//             stroke="currentColor"
+//           >
+//             <path
+//               strokeLinecap="round"
+//               strokeLinejoin="round"
+//               strokeWidth={2}
+//               d="M17 8l4 4m0 0l-4 4m4-4H3"
+//             />
+//           </svg>
+//         </div>
+//       </div>
+//     </section>
+//   );
+// };
+
+// export default Brands;
 
 
 
