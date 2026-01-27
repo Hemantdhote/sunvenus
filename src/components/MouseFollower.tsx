@@ -166,7 +166,7 @@ const MouseFollower = () => {
 
     const onMouseEnterLink = () => {
       gsap.to(cursor, {
-        scale: 1.5,
+        scale: 1.1,
         duration: 0.3,
         ease: 'power2.out',
       });
@@ -174,7 +174,7 @@ const MouseFollower = () => {
 
     const onMouseEnterButton = () => {
       gsap.to(cursor, {
-        scale: 2,
+        scale: 1.1,
         duration: 0.3,
         ease: "power2.out",
       });
