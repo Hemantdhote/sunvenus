@@ -13,6 +13,7 @@ import Footer from '@/components/Footer';
 import MouseFollower from '@/components/MouseFollower';
 import LuxuryStepsSection from '@/components/LuxuryStepsSection';
 import FixedLuxuryScroll from '@/components/FixedLuxuryScroll';
+import LuxuryCTASection from '@/components/LuxuryCTASection';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -34,7 +35,7 @@ const Index = () => {
          <FixedLuxuryScroll
           backgroundImage="https://images.unsplash.com/photo-1511919884226-fd3cad34687c?q=80&w=2400"
         >
-          <LuxuryStepsSection />
+          <LuxuryCTASection />
         </FixedLuxuryScroll>
         <FAQ />
         <Footer />
