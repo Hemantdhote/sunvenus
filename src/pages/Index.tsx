@@ -11,6 +11,7 @@ import FAQ from '@/components/FAQ';
 import Footer from '@/components/Footer';
 
 import MouseFollower from '@/components/MouseFollower';
+import LuxuryStepsSection from '@/components/LuxuryStepsSection';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -18,15 +19,16 @@ const Index = () => {
 
   return (
     <>
-    <MouseFollower/>
+      <MouseFollower />
       {isLoading && <Loader onComplete={() => setIsLoading(false)} />}
-      
+
       <div className={isLoading ? 'opacity-0' : 'opacity-100 transition-opacity duration-500'}>
         <Navbar />
         <Hero />
         <About />
         <CarShowcase />
         <Brands />
+        <LuxuryStepsSection />
         <Testimonials />
         <FAQ />
         <Footer />

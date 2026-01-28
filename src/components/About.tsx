@@ -200,7 +200,7 @@ const About = () => {
         <div className="stats-container grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-16 border-t border-border">
           {stats.map((stat, index) => (
             <div key={index} className="stat-item text-center">
-              <div className="font-serif text-4xl md:text-5xl font-bold text-gradient-gold mb-2">
+              <div className="font-sans text-4xl md:text-5xl font-bold text-gradient-gold mb-2">
                 <CountUp value={stat.value} suffix={stat.suffix} />
               </div>
               <p className="text-muted-foreground font-medium">{stat.label}</p>
