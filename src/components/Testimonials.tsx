@@ -732,7 +732,7 @@ const Testimonials = () => {
   }, [index]);
 
   return (
-    <section className="py-32 bg-muted/30 overflow-hidden">
+    <section className="py-32 bg-muted overflow-hidden">
       <div className="container mx-auto px-6">
 
         {/* HEADER */}
