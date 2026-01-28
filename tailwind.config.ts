@@ -166,10 +166,11 @@ export default {
         border: "#e3ddd3",
         input: "#e3ddd3",
         ring: "#f4c542",
-        background: "#faf7f3",
+        background: "#fff",
+        white:"#fff",
         foreground: "#1a1f29",
         primary: {
-          DEFAULT: "#f4c542",
+          DEFAULT: "#0284c5",
           foreground: "#1a1f29",
         },
         secondary: {
@@ -208,21 +209,10 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
-        mona: [
-          '"Mona Sans"',
-          '"Helvetica Neue"',
-          'Helvetica',
-          'Arial',
-          'sans-serif',
-        ],
+        mona: ['"Mona Sans"', '"Helvetica Neue"', "Helvetica", "Arial", "sans-serif"],
         sans: ["Inter", "ui-sans-serif", "system-ui", "sans-serif"],
         serif: ["Playfair Display", "ui-serif", "Georgia", "serif"],
-        poppins: [
-          'Poppins',
-          'ui-sans-serif',
-          'system-ui',
-          'sans-serif',
-        ],
+        poppins: ["Poppins", "ui-sans-serif", "system-ui", "sans-serif"],
       },
       keyframes: {
         "fade-in-up": {
@@ -275,5 +265,6 @@ export default {
       },
     },
   },
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;

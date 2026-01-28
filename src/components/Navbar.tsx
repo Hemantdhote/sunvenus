@@ -200,33 +200,24 @@ const Navbar = () => {
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled
-            ? "bg-card/90 backdrop-blur-xl shadow-[0_10px_40px_hsl(var(--gold)/0.25)] py-4"
-            : "bg-transparent py-6"
-        }`}
-      >
+          isScrolled ? "bg-card/90 backdrop-blur-xl shadow-[0_10px_40px_hsl(var(--gold)/0.25)] py-2" : "bg-white py-3 "
+        }`}>
         <div className="container mx-auto px-6 flex items-center justify-between">
           {/* LOGO */}
           <motion.div
             whileHover={{ scale: 1.08, rotate: 1 }}
             transition={{ type: "spring", stiffness: 300 }}
             className="flex items-center gap-3 cursor-pointer"
-            onClick={() => scrollToSection("#home")}
-          >
+            onClick={() => scrollToSection("#home")}>
             <motion.div
               animate={{
-                boxShadow: isScrolled
-                  ? "0 0 25px hsl(var(--gold) / 0.6)"
-                  : "0 0 0px transparent",
+                boxShadow: isScrolled ? "0 0 25px hsl(var(--gold) / 0.6)" : "0 0 0px transparent",
               }}
-              className="w-11 h-11 rounded-full bg-gradient-to-br from-gold-light via-gold to-gold-dark flex items-center justify-center"
-            >
-              <span className="text-secondary font-serif font-bold text-lg">
-                S
-              </span>
+              className="w-11 h-11 rounded-full bg-gradient-to-br bg-primary flex items-center justify-center">
+              <span className="text-secondary font-serif font-bold text-lg">S</span>
             </motion.div>
 
-            <span className="font-serif text-xl font-semibold text-foreground tracking-wide">
+            <span className="font-serif text-xl font-semibold text-primary tracking-wide">
               Sun<span className="text-gradient-gold">Venus</span>
             </span>
           </motion.div>
@@ -240,14 +231,11 @@ const Navbar = () => {
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 + index * 0.05 }}
-                className={`relative text-sm font-medium tracking-wide ${
-                  isScrolled ? "text-foreground" : "text-white"
-                } group`}
-              >
+                className={`relative text-md font-medium tracking-wide ${isScrolled ? "text-foreground" : "text-black"} group`}>
                 {link.name}
 
                 {/* Gold underline shimmer */}
-                <span className="absolute left-0 -bottom-1 h-[2px] w-0 bg-gradient-to-r from-transparent via-gold to-transparent transition-all duration-500 group-hover:w-full" />
+                <span className="absolute left-0 -bottom-1 h-[3px] w-0 bg-gradient-to-r from-transparent via-primary to-transparent transition-all duration-500 group-hover:w-full" />
               </motion.button>
             ))}
           </div>
@@ -261,8 +249,7 @@ const Navbar = () => {
               }}
               whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection("#home")}
-              className="btn-luxury text-sm px-7 py-3"
-            >
+              className="btn-luxury text-sm px-7 py-3">
               Book Now
             </motion.button>
           </div>
@@ -270,8 +257,7 @@ const Navbar = () => {
           {/* MOBILE TOGGLE */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden relative w-8 h-6 flex flex-col justify-between"
-          >
+            className="lg:hidden relative w-8 h-6 flex flex-col justify-between">
             <motion.span
               animate={{
                 rotate: isMobileMenuOpen ? 45 : 0,
@@ -302,8 +288,7 @@ const Navbar = () => {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -30 }}
             transition={{ duration: 0.4, ease: "easeOut" }}
-            className="fixed inset-0 z-40 lg:hidden pt-28 bg-card/95 backdrop-blur-2xl"
-          >
+            className="fixed inset-0 z-40 lg:hidden pt-28 bg-card/95 backdrop-blur-2xl">
             <div className="container mx-auto px-6 py-8">
               <motion.div
                 initial="hidden"
@@ -313,8 +298,7 @@ const Navbar = () => {
                     transition: { staggerChildren: 0.08 },
                   },
                 }}
-                className="flex flex-col gap-7"
-              >
+                className="flex flex-col gap-7">
                 {navLinks.map((link) => (
                   <motion.button
                     key={link.name}
@@ -323,8 +307,7 @@ const Navbar = () => {
                       visible: { opacity: 1, x: 0 },
                     }}
                     onClick={() => scrollToSection(link.href)}
-                    className="text-3xl font-serif text-foreground hover:text-gold transition-colors text-left"
-                  >
+                    className="text-3xl font-serif text-foreground hover:text-gold transition-colors text-left">
                     {link.name}
                   </motion.button>
                 ))}
@@ -335,8 +318,7 @@ const Navbar = () => {
                     visible: { opacity: 1, x: 0 },
                   }}
                   onClick={() => scrollToSection("#home")}
-                  className="btn-luxury mt-6 text-center"
-                >
+                  className="btn-luxury mt-6 text-center">
                   Book Now
                 </motion.button>
               </motion.div>
