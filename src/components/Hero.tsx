@@ -1,9 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { MapPin, Calendar, Clock } from 'lucide-react';
 import gsap from 'gsap';
 import heroImage from '@/assets/hero-car.jpg';
 // import carVideo from "../assets/brands/13103349_1920_1080_60fps.mp4"
 import carVideo from "../assets/brands/test.mp4"
+import BookingBar from './BookingBar';
 
 const Hero = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -53,28 +56,13 @@ const Hero = () => {
       className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
-        {/* <motion.div
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: 'easeOut' }}
-          className="w-full h-full"
-        >
-          <img
-            src={heroImage}
-            alt="Luxury car"
-            className="w-full h-full object-cover"
-          />
-        </motion.div>
-        <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/70 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-secondary/60 via-transparent to-secondary/30" /> */}
-
         <motion.div
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
           className="w-full h-full">
           <video
-            src={carVideo} // <-- your video file (mp4 / webm)
+            src={carVideo}
             autoPlay
             loop
             muted
@@ -84,10 +72,6 @@ const Hero = () => {
             className="w-full h-full object-cover"
           />
         </motion.div>
-
-        {/* DARK LUXURY OVERLAYS */}
-        {/* <div className="absolute inset-0 bg-gradient-to-r from-secondary/90 via-secondary/70 to-transparent" />
-  <div className="absolute inset-0 bg-gradient-to-t from-secondary/60 via-transparent to-secondary/30" /> */}
       </div>
 
       {/* Content */}
@@ -171,300 +155,11 @@ const Hero = () => {
           </div>
 
           {/* Booking Form */}
-          {/* <div className="hero-form">
-            <form
-              onSubmit={handleSubmit}
-              className="glass-card rounded-2xl p-6 md:p-8 shadow-2xl"
-            >
-              <h3 className="font-serif text-2xl font-semibold text-foreground mb-6">
-                Book Your Ride
-              </h3>
 
-              <div className="grid gap-4">
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-muted-foreground mb-2">
-                      Pickup Location
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Enter pickup location"
-                      value={formData.pickupLocation}
-                      onChange={(e) => setFormData({ ...formData, pickupLocation: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-muted-foreground mb-2">
-                      Drop-off Location
-                    </label>
-                    <input
-                      type="text"
-                      placeholder="Enter drop-off location"
-                      value={formData.dropoffLocation}
-                      onChange={(e) => setFormData({ ...formData, dropoffLocation: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all"
-                    />
-                  </div>
-                </div>
 
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-muted-foreground mb-2">
-                      Pickup Date
-                    </label>
-                    <input
-                      type="date"
-                      value={formData.pickupDate}
-                      onChange={(e) => setFormData({ ...formData, pickupDate: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-muted-foreground mb-2">
-                      Pickup Time
-                    </label>
-                    <input
-                      type="time"
-                      value={formData.pickupTime}
-                      onChange={(e) => setFormData({ ...formData, pickupTime: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all"
-                    />
-                  </div>
-                </div>
 
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div>
-                    <label className="block text-sm font-medium text-muted-foreground mb-2">
-                      Return Date
-                    </label>
-                    <input
-                      type="date"
-                      value={formData.returnDate}
-                      onChange={(e) => setFormData({ ...formData, returnDate: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all"
-                    />
-                  </div>
-                  <div>
-                    <label className="block text-sm font-medium text-muted-foreground mb-2">
-                      Return Time
-                    </label>
-                    <input
-                      type="time"
-                      value={formData.returnTime}
-                      onChange={(e) => setFormData({ ...formData, returnTime: e.target.value })}
-                      className="w-full px-4 py-3 rounded-lg border border-border bg-background text-foreground focus:outline-none focus:ring-2 focus:ring-gold/50 transition-all"
-                    />
-                  </div>
-                </div>
-
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  className="btn-luxury w-full mt-2"
-                >
-                  Search Available Cars
-                </motion.button>
-              </div>
-            </form>
-          </div> */}
-
-          {/* Booking Form */}
-          <motion.div
-            className="hero-form relative"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}>
-            {/* <motion.form
-    onSubmit={handleSubmit}
-    whileHover={{ y: -3 }}
-    transition={{ duration: 0.4, ease: "easeOut" }}
-    className="
-      relative
-      rounded-3xl
-      p-6 md:p-8
-      bg-white/10
-      backdrop-blur-xl
-      border border-white/20
-      shadow-[0_30px_80px_rgba(0,0,0,0.35)]
-      overflow-hidden
-    "
-  >
-    <div className="pointer-events-none absolute inset-0">
-      <div className="absolute -top-1/2 left-1/3 w-2/3 h-full bg-gradient-to-br from-white/10 to-transparent rotate-12" />
-    </div>
-
-    <h3 className="relative font-sans text-white text-2xl font-semibold mb-6">
-      Book Your Ride
-    </h3>
-
-    <div className="relative grid gap-4">
-      <div className="grid md:grid-cols-2 gap-4">
-        
-        <div>
-          <label className="block text-sm font-medium text-muted mb-2">
-            Pickup Location
-          </label>
-          <input
-            type="text"
-            placeholder="Enter pickup location"
-            value={formData.pickupLocation}
-            onChange={(e) =>
-              setFormData({ ...formData, pickupLocation: e.target.value })
-            }
-            className="
-              w-full px-4 py-3 rounded-xl
-              bg-white/20
-              backdrop-blur
-              border border-white/20
-              text-foreground
-              placeholder:text-muted
-              focus:outline-none
-              focus:border-gold/60
-              focus:ring-2 focus:ring-gold/30
-              transition-all duration-300
-            "
-          />
-        </div>
-
-        
-        <div>
-          <label className="block text-sm font-medium text-muted mb-2">
-            Drop-off Location
-          </label>
-          <input
-            type="text"
-            placeholder="Enter drop-off location"
-            value={formData.dropoffLocation}
-            onChange={(e) =>
-              setFormData({ ...formData, dropoffLocation: e.target.value })
-            }
-            className="
-              w-full px-4 py-3 rounded-xl
-              bg-white/20 backdrop-blur
-              border border-white/20
-              text-foreground
-              placeholder:text-muted
-              focus:outline-none
-              focus:border-gold/60
-              focus:ring-2 focus:ring-gold/30
-              transition-all duration-300
-            "
-          />
-        </div>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-4">
-    
-        <div>
-          <label className="block text-sm font-medium text-muted mb-2">
-            Pickup Date
-          </label>
-          <input
-            type="date"
-            value={formData.pickupDate}
-            onChange={(e) =>
-              setFormData({ ...formData, pickupDate: e.target.value })
-            }
-            className="
-              w-full px-4 py-3 rounded-xl
-              bg-white/20 backdrop-blur
-              border border-white/20
-              text-foreground
-              focus:outline-none
-              focus:border-gold/60
-              focus:ring-2 focus:ring-gold/30
-              transition-all duration-300
-            "
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-muted mb-2">
-            Pickup Time
-          </label>
-          <input
-            type="time"
-            value={formData.pickupTime}
-            onChange={(e) =>
-              setFormData({ ...formData, pickupTime: e.target.value })
-            }
-            className="
-              w-full px-4 py-3 rounded-xl
-              bg-white/20 backdrop-blur
-              border border-white/20
-              text-foreground
-              focus:outline-none
-              focus:border-gold/60
-              focus:ring-2 focus:ring-gold/30
-              transition-all duration-300
-            "
-          />
-        </div>
-      </div>
-
-      <div className="grid md:grid-cols-2 gap-4">
-       
-        <div>
-          <label className="block text-sm font-medium text-muted mb-2">
-            Return Date
-          </label>
-          <input
-            type="date"
-            value={formData.returnDate}
-            onChange={(e) =>
-              setFormData({ ...formData, returnDate: e.target.value })
-            }
-            className="
-              w-full px-4 py-3 rounded-xl
-              bg-white/20 backdrop-blur
-              border border-white/20
-              text-foreground
-              focus:outline-none
-              focus:border-gold/60
-              focus:ring-2 focus:ring-gold/30
-              transition-all duration-300
-            "
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-muted mb-2">
-            Return Time
-          </label>
-          <input
-            type="time"
-            value={formData.returnTime}
-            onChange={(e) =>
-              setFormData({ ...formData, returnTime: e.target.value })
-            }
-            className="
-              w-full px-4 py-3 rounded-xl
-              bg-white/20 backdrop-blur
-              border border-white/20
-              text-foreground
-              focus:outline-none
-              focus:border-gold/60
-              focus:ring-2 focus:ring-gold/30
-              transition-all duration-300
-            "
-          />
-        </div>
-      </div>
-
-      <motion.button
-        whileHover={{ boxShadow: "0 0 30px rgba(212,175,55,0.35)" }}
-        whileTap={{ scale: 0.98 }}
-        transition={{ duration: 0.3 }}
-        type="submit"
-        className="btn-luxury w-full mt-4"
-      >
-        Search Available Cars
-      </motion.button>
-    </div>
-  </motion.form> */}
-          </motion.div>
+        <BookingBar/>
+          
         </div>
       </div>
 
@@ -475,13 +170,13 @@ const Hero = () => {
         transition={{ delay: 1.5 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10">
         <div className="flex flex-col items-center gap-2 text-secondary-foreground/60">
-          <span className="text-xs uppercase tracking-widest">Scroll</span>
-          <motion.div
+          {/* <span className="text-xs uppercase tracking-widest">Scroll</span> */}
+          {/* <motion.div
             animate={{ y: [0, 10, 0] }}
             transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
             className="w-6 h-10 rounded-full border-2 border-secondary-foreground/30 flex items-start justify-center p-2">
             <div className="w-1.5 h-3 rounded-full bg-gold" />
-          </motion.div>
+          </motion.div> */}
         </div>
       </motion.div>
     </section>

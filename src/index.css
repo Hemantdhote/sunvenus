@@ -415,6 +415,19 @@
     box-shadow: 0 8px 25px rgba(244, 197, 66, 0.5);
   }
 
+  .btn-luxury-sub {
+    @apply relative overflow-hidden px-8 py-4 font-medium transition-all duration-300;
+    background:  #0284c5;
+    color: white;
+    border-radius: var(--radius);
+    /* box-shadow: 0 4px 15px rgba(244, 197, 66, 0.4); */
+  }
+
+    .btn-luxury-sub:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 1px 1px rgba(244, 197, 66, 0.5);
+  }
+
   .btn-luxury::before {
     content: '';
     position: absolute;
@@ -430,6 +443,8 @@
     left: 100%;
   }
 
+
+  
   .btn-outline-luxury {
     @apply px-8 py-4 font-medium border-2 transition-all duration-300;
     border-color: #0284c5;

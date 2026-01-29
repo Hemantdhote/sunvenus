@@ -179,7 +179,7 @@ const Navbar = () => {
     { name: "Home", href: "#home" },
     { name: "About", href: "#about" },
     { name: "Fleet", href: "#fleet" },
-    { name: "Testimonials", href: "#testimonials" },
+    { name: "Testimonials", href: "#carshowcase" },
     { name: "FAQ", href: "#faq" },
     { name: "Contact", href: "#footer" },
   ];

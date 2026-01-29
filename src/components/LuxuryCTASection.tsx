@@ -215,7 +215,7 @@ import { MessageCircle, ArrowRight, Star } from "lucide-react";
 
 export default function LuxuryCTASection() {
   return (
-    <section className="relative w-full py-24 md:py-12 bg-white overflow-hidden">
+    <section className="relative w-full py-24 md:py-8 bg-white overflow-hidden">
       
       {/* Subtle Background Pattern */}
       <div className="absolute inset-0 opacity-[0.02]">

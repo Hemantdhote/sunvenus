@@ -21,7 +21,7 @@ export default function FixedLuxuryScroll({
   const y = useTransform(scrollYProgress, [0, 1], ["0%", "-15%"]);
 
   return (
-    <section ref={ref} className="relative h-[150vh] w-full py-10">
+    <section ref={ref} className="relative h-[160vh] w-full py-10">
       {/* FIXED BACKGROUND */}
       <div className="fixed inset-0 -z-10 overflow-hidden">
         <motion.div
