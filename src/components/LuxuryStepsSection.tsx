@@ -1,6 +1,3 @@
-
-
-
 import { Search, CalendarCheck, Truck } from "lucide-react";
 
 const steps = [
@@ -37,6 +34,7 @@ const steps = [
 export default function LuxuryStepsSection() {
   return (
     <section
+    id="howitworks"
       className="relative w-full py-28 overflow-hidden bg-cover bg-center"
       style={{
         backgroundImage:

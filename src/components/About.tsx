@@ -98,6 +98,27 @@ const About = () => {
           },
         }
       );
+
+      // Rotate all vector SVGs 360 degrees continuously
+      const shapes = sectionRef.current?.querySelectorAll('.vector-shape');
+      shapes?.forEach((shape, index) => {
+        gsap.to(shape, {
+          rotation: 360,
+          duration: 20 + index * 5,
+          repeat: -1,
+          ease: 'none',
+        });
+
+        gsap.to(shape, {
+          y: -50,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: 1,
+          },
+        });
+      });
     }, sectionRef);
 
     return () => ctx.revert();
@@ -147,7 +168,25 @@ const About = () => {
           </div>
 
           {/* Content */}
-          <div className="about-content">
+          <div className="about-content relative">
+
+            <svg
+              className="vector-shape absolute -top-20 -right-10 w-[400px] h-[400px] opacity-20"
+              viewBox="0 0 100 100"
+            >
+              {[...Array(10)].map((_, i) =>
+                [...Array(10)].map((_, j) => (
+                  <circle
+                    key={`${i}-${j}`}
+                    cx={5 + i * 10}
+                    cy={5 + j * 10}
+                    r="1"
+                    className=" opacity-1"
+                  />
+                ))
+              )}
+            </svg>
+
             <span className="inline-block px-4 py-2 rounded-full bg-gold/10 text-gold text-sm font-medium mb-6">
               About SunVenus
             </span>
@@ -197,7 +236,40 @@ const About = () => {
         </div>
 
         {/* Stats */}
-        <div className="stats-container grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-16 border-t border-border">
+        <div className="stats-container grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-16 border-t border-border relative z-50">
+          <svg
+            className="vector-shape absolute -top-4 -left-20 w-[200px] h-[200px] z-0 pointer-events-none"
+            viewBox="0 0 100 100"
+          >
+            <polygon
+              points="50,5 95,27.5 95,72.5 50,95 5,72.5 5,27.5"
+              fill="#E8F1F4"
+              stroke="#D6E9EE"
+              strokeWidth="0.5"
+              fillOpacity="0.5"
+              strokeOpacity="0.5"
+            />
+          </svg>
+
+          <svg
+            className="vector-shape absolute bottom-0 right-0 w-[500px] h-[200px] text-[#F5F7FB]"
+            viewBox="0 0 200 80"
+          >
+            <path
+              d="M0,40 Q25,20 50,40 T100,40 T150,40 T200,40"
+              stroke="currentColor"
+              strokeWidth="0.5"
+              fill="none"
+              strokeOpacity="0.2"
+            />
+            <path
+              d="M0,50 Q25,30 50,50 T100,50 T150,50 T200,50"
+              stroke="currentColor"
+              strokeWidth="0.3"
+              fill="none"
+              strokeOpacity="0.2"
+            />
+          </svg>
           {stats.map((stat, index) => (
             <div key={index} className="stat-item text-center">
               <div className="font-sans text-4xl md:text-5xl font-bold text-gradient-gold mb-2">
@@ -213,5 +285,3 @@ const About = () => {
 };
 
 export default About;
-
-
