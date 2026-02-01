@@ -508,3 +508,66 @@
     display: none;
   }
 }
+
+
+
+
+.lux-input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(218, 165, 32, 0.25);
+  color: hsl(var(--foreground));
+  outline: none;
+  transition: all 0.3s ease;
+}
+
+.lux-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.lux-input {
+  width: 100%;
+  padding: 20px 18px;
+  border-radius: 16px;
+  background: linear-gradient(
+    to bottom,
+    rgba(255,255,255,0.04),
+    rgba(255,255,255,0.01)
+  );
+  border: 1px solid rgba(218,165,32,0.22);
+  color: white;
+  outline: none;
+  transition: all 0.35s ease;
+}
+
+.lux-input:hover {
+  border-color: rgba(218,165,32,0.4);
+}
+
+.lux-input:focus {
+  border-color: #d6b97b;
+  box-shadow: 0 0 20px rgba(214,185,123,0.28);
+}
+
+.lux-btn {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  margin-top: 10px;
+  padding: 16px;
+  border-radius: 14px;
+  background: linear-gradient(to right, #b08d57, #d6b97b);
+  color: black;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.lux-btn:hover {
+  box-shadow: 0 0 35px rgba(214,185,123,0.6);
+}
+
+.lux-btn:active {
+  transform: scale(0.98);
+}

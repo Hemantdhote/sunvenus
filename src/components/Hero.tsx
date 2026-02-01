@@ -90,7 +90,7 @@ const Hero = () => {
             </motion.span>
 
             <h1 className="hero-title font-sans text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-secondary-foreground leading-tight mb-6">
-              Drive Your Dream Car
+              Drive Your 
               <span className="block text-gradient-gold">Dream Car</span>
               Today
             </h1>

@@ -63,7 +63,7 @@ export default function BookingBar() {
       className="mt-6"
     >
       <div className="bg-white rounded-full p-4 shadow-lg">
-        <div className="flex flex-col lg:flex-row gap-4 items-stretch">
+        <div className="flex flex-col lg:flex-row gap-4   items-center">
 
           {/* ONE WAY / HOURLY */}
           <div className="flex gap-2 bg-muted p-2 rounded-full justify-center">
@@ -249,7 +249,7 @@ export default function BookingBar() {
           <Link to="/booking">
             <motion.button
               whileHover={{ scale: 1.05 }}
-              className="bg-primary text-white px-8 py-4 rounded-full"
+              className="bg-primary text-white px-8 py-3.5 rounded-full"
             >
               Book Now
             </motion.button>

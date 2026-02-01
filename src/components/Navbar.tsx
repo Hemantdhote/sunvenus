@@ -1,9 +1,13 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import AuthDrawer from "./auth/AuthDrawer";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const [isAuthOpen, setIsAuthOpen] = useState(false);
+
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,9 +43,8 @@ const Navbar = () => {
         initial={{ y: -120, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          isScrolled ? "bg-card/90 backdrop-blur-xl shadow-[0_10px_40px_hsl(var(--gold)/0.25)] py-2" : "bg-white py-3 "
-        }`}>
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${isScrolled ? "bg-card/90 backdrop-blur-xl shadow-[0_10px_40px_hsl(var(--gold)/0.25)] py-2" : "bg-white py-3 "
+          }`}>
         <div className="container mx-auto px-6 flex items-center justify-between">
           {/* LOGO */}
           <motion.div
@@ -88,7 +91,8 @@ const Navbar = () => {
                 boxShadow: "0 0 30px hsl(var(--gold) / 0.6)",
               }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => scrollToSection("#home")}
+              // onClick={() => scrollToSection("#home")}
+              onClick={() => setIsAuthOpen(true)}
               className="btn-luxury text-sm px-7 py-3">
               Book Now
             </motion.button>
@@ -166,6 +170,14 @@ const Navbar = () => {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <AuthDrawer
+        isOpen={isAuthOpen}
+        onClose={() => setIsAuthOpen(false)}
+      />
+
+
+
     </>
   );
 };

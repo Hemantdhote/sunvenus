@@ -236,9 +236,9 @@ const About = () => {
         </div>
 
         {/* Stats */}
-        <div className="stats-container grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-16 border-t border-border relative z-50">
+        <div className="stats-container grid grid-cols-2 md:grid-cols-4 gap-8 mt-20 pt-16 border-t border-border relative">
           <svg
-            className="vector-shape absolute -top-4 -left-20 w-[200px] h-[200px] z-0 pointer-events-none"
+            className="vector-shape absolute -top-4 -left-20 w-[200px] h-[200px] z-0 pointer-events-none "
             viewBox="0 0 100 100"
           >
             <polygon
