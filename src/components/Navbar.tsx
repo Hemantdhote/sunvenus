@@ -1,12 +1,15 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import AuthDrawer from "./auth/AuthDrawer";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const [isAuthOpen, setIsAuthOpen] = useState(false);
+
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -19,13 +22,13 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "About", href: "#about" },
-    { name: "Collection", href: "#collection" },
-    { name: "Brands", href: "#brands" },
-    { name: "How It Works", href: "#howitworks" },
-    { name: "FAQ", href: "#faq" },
-    { name: "Contact", href: "#footer" },
+    { name: "Home", href: "/" },
+    { name: "About", href: "/about" },
+    { name: "Collection", href: "/cars-collection" },
+    { name: "Brands", href: "/cars-brand" },
+    { name: "How It Works", href: "/how-it-works" },
+    { name: "FAQ", href: "/faq" },
+    { name: "Contact", href: "/contact" },
   ];
 
   const scrollToSection = (href) => {
@@ -70,7 +73,7 @@ const Navbar = () => {
             {navLinks.map((link, index) => (
               <motion.button
                 key={link.name}
-                onClick={() => scrollToSection(link.href)}
+                onClick={() => navigate(link.href)}
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2 + index * 0.05 }}
@@ -150,7 +153,7 @@ const Navbar = () => {
                       hidden: { opacity: 0, x: -20 },
                       visible: { opacity: 1, x: 0 },
                     }}
-                    onClick={() => scrollToSection(link.href)}
+                    onClick={() => navigate(link.href)}
                     className="text-3xl font-serif text-foreground hover:text-gold transition-colors text-left">
                     {link.name}
                   </motion.button>
