@@ -312,7 +312,7 @@ const ContactPage: React.FC = () => {
               <div className="form-header mb-14">
                 <div className="h-[1px] w-20 bg-gradient-to-r from-amber-600 to-transparent mb-8" />
 
-                <h2 className="text-5xl font-sans font-medium md:text-6xl xl:text-7xl font-light tracking-wider mb-8 text-gray-900">
+                <h2 className="text-5xl font-sans  md:text-6xl xl:text-7xl font-light tracking-wider mb-8 text-gray-900">
                   Reserve Your
                   <span className="block font-sans font-medium italic text-primary">
                     Experience

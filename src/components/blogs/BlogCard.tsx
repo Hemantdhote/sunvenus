@@ -2,29 +2,11 @@ import { useRef, useEffect } from "react";
 import { gsap } from "gsap";
 
 const BlogCard = ({ blog }) => {
-  const cardRef = useRef(null);
 
-  useEffect(() => {
-    gsap.fromTo(
-      cardRef.current,
-      { y: 40, opacity: 0 },
-      {
-        y: 0,
-        opacity: 1,
-        duration: 1,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: cardRef.current,
-          start: "top 85%",
-        },
-      }
-    );
-  }, []);
 
   return (
     <article
-      ref={cardRef}
-      className="group bg-red-500 rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.08)] transition-all duration-500"
+      className="group will-change-transform rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(0,0,0,0.06)] hover:shadow-[0_30px_60px_rgba(0,0,0,0.08)] transition-all duration-500"
     >
       <div className="overflow-hidden">
         <img
@@ -35,11 +17,11 @@ const BlogCard = ({ blog }) => {
       </div>
 
       <div className="p-6 space-y-3">
-        <span className="text-xs tracking-widest uppercase text-gray-500">
+        <span className="text-xs tracking-widest uppercase text-primary">
           {blog.category}
         </span>
 
-        <h3 className="text-xl font-serif text-gray-900 leading-snug">
+        <h3 className="text-xl font-sans text-gray-900 leading-snug">
           {blog.title}
         </h3>
 
