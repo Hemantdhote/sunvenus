@@ -17,7 +17,7 @@ import LuxuryCTASection from '@/components/LuxuryCTASection';
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
-  useLenis();
+  // useLenis();
 
   return (
     <>
